@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservableObject var viewModel: WeatherViewModel
+    @ObservedObject var viewModel: WeatherViewModel
 
     var body: some View {
-        VerticalStack {
+        VStack {
         ForEach(viewModel.records) { record in
-            WeatherRecrodView(record: record, viewModel: viewModel)
+            WeatherRecordView(record: record, viewModel: viewModel)
            }
         }
     }
@@ -24,21 +24,21 @@ struct WeatherRecordView: View {
     var viewModel: WeatherViewModel 
     var body: some View {
         ZStack {
-                RoundedRectangle (cornerRadius: 25:0) 
+            RoundedRectangle (cornerRadius: 25.0) 
                     .stroke()
                 HStack {
                 Text("☀️")
                     .font(.largeTitle)
                 VStack {
                     Text(record.cityName)
-                    Text("Temperature: \{record.temperature, specifier: "%.1f"} ℃")
+                    Text("Temperature: \(record.temperature, specifier: "%.1f") ℃")
                         .font(.caption)                
                 }
-                Text("Refresh")
+                    Text("🔄")
                     .font(.largeTitle)
-                    .onTapCapture {
-                        viewModel.refresh(record)
-                    }
+                    .onTapGesture {
+                        viewModel.refresh(record: record)
+                   }
             }
          }
     }
