@@ -21,9 +21,11 @@ struct WeatherModel {
         var windDirection: Float = Float.random(in: 0 ..< 360.0)
     }
     
-    mutating func refresh(record: WeatherRecord) {
-        records[0].temperature = Float.random(in: -10.0 ... 30.0)
-        print("Refreshing record: \(record)")
+    mutating func refresh(recordId: UUID, weatherDescription: ConsolidateWeatherDescription) {
+        let idx = records.firstIndex { $0.id == recordId } ?? 0
+        records[idx].temperature = weatherDescription.the_temp
+        records[idx].weatherState = weatherDescription.weather_state_name
+        print("Refreshing record: \(records[idx])")
         
     }
 }
