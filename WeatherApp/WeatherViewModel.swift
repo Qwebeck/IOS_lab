@@ -5,10 +5,6 @@ enum HTTPError: LocalizedError {
     case statusCode
 }
 
-struct WeatherResponse: Decodable {
-    let title: String
-    let consolidated_weather: Array<ConsolidateWeatherDescription>
-}
 struct ConsolidateWeatherDescription: Decodable {
     let weather_state_name: String
     let the_temp: Float
@@ -16,15 +12,23 @@ struct ConsolidateWeatherDescription: Decodable {
 
 class WeatherViewModel: ObservableObject {
     var cancellable: Cancellable?;
-
-    @Published private(set) var model: WeatherModel = WeatherModel(cities: ["Warsaw", "Cracow", "Wroclaw", "London", "Kyiv", "Dnipro", "Sydney","Lviv", "Lodz", "Manchester"])
+    
+    static var citites: [String: Int] = [
+        "London": 44418,
+        "San-Francisco": 2487956
+    ]
+    @Published private(set) var model: WeatherModel = WeatherModel(cities: Array(citites.keys)
+                                                                    )
+    
     
     var records: Array<WeatherModel.WeatherRecord> {
         model.records
     }
 
     func refresh(record: WeatherModel.WeatherRecord) {
-        let url: URL =  URL(string: "https://www.metaweather.com/api/location/44418/")!
+        let today = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+
+        let url: URL =  URL(string: "https://www.metaweather.com/api/location/\(WeatherViewModel.citites[record.cityName]!)/\(today.year!)/\(today.month!)/\(today.day!)/")!
         let request = URLRequest(url: url)
         cancellable = URLSession.shared.dataTaskPublisher(for: request)
             .tryMap { output in
@@ -34,12 +38,12 @@ class WeatherViewModel: ObservableObject {
                 return output.data
                 
             }
-            .decode(type: WeatherResponse.self, decoder: JSONDecoder())
+            .decode(type: Array<ConsolidateWeatherDescription>.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .sink (receiveCompletion: { error in
                 print(error)
             }) { weather in
-                self.model.refresh(recordId: record.id, weatherDescription: weather.consolidated_weather[0])
+                self.model.refresh(recordId: record.id, weatherDescription: weather[0])
             }
     }
 }
