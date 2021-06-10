@@ -15,6 +15,7 @@
 		068F53562643C29A004A7049 /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F53552643C29A004A7049 /* WeatherAppUITests.swift */; };
 		AC7600F9264D004F0078D1C0 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7600F7264D004F0078D1C0 /* WeatherModel.swift */; };
 		AC7600FA264D004F0078D1C0 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7600F8264D004F0078D1C0 /* WeatherViewModel.swift */; };
+		ACF035662671E6C900ED1B2F /* WeatherDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF035652671E6C900ED1B2F /* WeatherDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		068F53572643C29A004A7049 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC7600F7264D004F0078D1C0 /* WeatherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		AC7600F8264D004F0078D1C0 /* WeatherViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		ACF035652671E6C900ED1B2F /* WeatherDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				068F533C2643C29A004A7049 /* Assets.xcassets */,
 				068F53412643C29A004A7049 /* Info.plist */,
 				068F533E2643C29A004A7049 /* Preview Content */,
+				ACF035652671E6C900ED1B2F /* WeatherDetailsView.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				AC7600FA264D004F0078D1C0 /* WeatherViewModel.swift in Sources */,
 				AC7600F9264D004F0078D1C0 /* WeatherModel.swift in Sources */,
 				068F53392643C296004A7049 /* WeatherAppApp.swift in Sources */,
+				ACF035662671E6C900ED1B2F /* WeatherDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,12 +12,19 @@ struct ContentView: View {
     let ITEM_SPACING: CGFloat = 10
 
     var body: some View {
-        ScrollView(.vertical) {
+        NavigationView {
+          ScrollView(.vertical) {
             VStack(spacing: ITEM_SPACING) {
             ForEach(viewModel.records) { record in
-                WeatherRecordView(record: record, viewModel: viewModel)
+                NavigationLink (
+                    destination: WeatherDetail(weatherRecord: record).navigationTitle("\(record.cityName) details")
+                ) {
+                    WeatherRecordView(record: record, viewModel: viewModel)
+                    
+                }
                }
             }
+          }.navigationTitle("Weather")
         }
     }
 }
